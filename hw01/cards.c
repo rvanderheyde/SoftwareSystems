@@ -56,9 +56,9 @@ int main() {
     char card_name[3];
     int count = 0;
     int flag;
+    int val;
     while (card_name[0]!='X'){
         getCard(card_name);
-        int val = 0;
         flag = setVal(card_name, &val);
         if (flag == 1)
             editCount(&count, val);
