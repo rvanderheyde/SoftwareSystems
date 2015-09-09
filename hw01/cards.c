@@ -1,14 +1,23 @@
+/* Prompts the user for input and puts the reply in the given buffer.
+
+   User input is truncated to the first two characters.
+
+   card_name: buffer where result is stored
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 
 
 
 void getCard(char cards[]) {
+    /* Takes a char array and prompts the used for input and fills the array. */
     puts("Enter the card name: ");
     scanf("%2s", cards);
 }
 
 void editCount(int *count, int value) {
+    /* Takes a pointer to the count and the value of the card and increments then prints the count */
     if ((value>2) && (value<7)){
         *count = *count + 1;
     } else if (value==10){
@@ -18,6 +27,10 @@ void editCount(int *count, int value) {
 }
 
 int setVal(char cards[], int *val){
+    /* Handles the card counting logic
+     * Takes a char array and a pointer to the val int and sets the val int based on the char array
+     * Returns a int flag to determine if count is edited
+     */
     switch(cards[0]){
     case 'K':                  
     case 'Q':
