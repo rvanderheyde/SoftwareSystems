@@ -16,7 +16,7 @@
     http://www.gnu.org/licenses/.
 
 */
-
+#include <inttypes.h>
 // generate a random float using the algorithm described
 // at allendowney.com/research/rand
 float my_random_float()
@@ -90,6 +90,37 @@ float my_random_float2()
 double my_random_double()
 {
   // TODO: fill this in
+  int x1,x2, exp1, exp2;
+  uint64_t exp, mant;
+
+  union {
+    double f;
+    uint64_t i;
+  } b;
+  // generate 31 random bits (assuming that RAND_MAX is 2^31 - 1
+  x1 = random();
+  x2 = random();
+  mant = ((uint64_t)x1 << 32) | (uint64_t)x2;
+  // use bit-sca-forward to find the first set bit and
+  // compute the exponent
+  asm ("bsfl %1, %0"
+       :"=r"(exp1)
+       :"r"(x1)
+      );
+  asm ("bsfl %1, %0"
+       :"=r"(exp2)
+       :"r"(x2)
+      );
+  exp = 1022 - exp1 - exp2;
+
+  // use the other 23 bits for the mantissa (for small numbers
+  // this means we are re-using some bits)
+  mant = mant >> 11;
+  b.i = (exp << 52) | mant;
+
+  return b.f;
+
+  
 }
 
 // return a constant (this is a dummy function for time trials)

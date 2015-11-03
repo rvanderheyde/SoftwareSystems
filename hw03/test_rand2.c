@@ -13,14 +13,14 @@ main (int argc, char *argv[])
 {
   int i;
   float f;
-  double t0, t1;
+  double t0, t1, d;
   int iters = 1000;
   int seed = 17;
 
   srandom (seed);
 
   for (i=0; i<iters; i++) {
-    f = my_random_float();
-    printf ("%f\n", f);
+    d = my_random_double();
+    printf ("%f\n", d);
   }
 }
