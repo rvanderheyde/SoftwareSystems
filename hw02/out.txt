@@ -1,0 +1,12 @@
+find
+find_track.c
+out.txt
+tee
+tee.c
+wget-1.15
+find
+find_track.c
+out.txt
+tee
+tee.c
+wget-1.15
